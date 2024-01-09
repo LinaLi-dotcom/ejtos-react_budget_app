@@ -4,7 +4,7 @@ import { AppContext } from "../context/AppContext";
 const Budget = () => {
   const { budget, expenses, currency } = useContext(AppContext);
   const [newBudget, setNewBudget] = useState(budget);
-  const [newCurrency, setCurrency] = useState(currency);
+  // const [newCurrency, setNewCurrency] = useState(currency);
 
   const totalExpenses = expenses.reduce((total, item) => {
     return (total += item.cost);
@@ -26,42 +26,21 @@ const Budget = () => {
   };
   return (
     <div className="alert alert-secondary">
-      <div style={{ backgroundColor: "lightgreen", padding: '1rem', marginBottom:'1rem' }}>
-        <div >
-          <label 
-          htmlFor="inputCurrencySElect01" >
-            Currency ({newCurrency})
-          </label>
-        </div>
-        <select
-          className="custom-select"
-          id="inputCurrencySelect01"
-          onChange={(event) => setCurrency(event.target.value)}
-        >
-         <option defaultValue>Choose Currency...</option>
-          <option value="Dollar $ " name="dollar">
-            Dollar $
-          </option>
-          <option value="Pounds £ " name="pounds">
-            Pounds £
-          </option>
-          <option value="Euro € " name="euro">
-            Euro €
-          </option>
-          <option value="Ruppee ₹ " name="ruppee">
-            Ruppee ₹
-          </option>
-        </select>
-      </div>
       <div>
       <span>Budget:</span>
-      <label htmlFor="budget"style={{ marginLeft: '1rem', size:10 }}>{newCurrency}</label>
+      <div>
+      <label 
+      htmlFor="budget"
+      style={{ marginLeft: '1rem', size:10 }}
+      >{currency}</label>
+      </div>
       <input
         id="budget"
         type="number"
         step="10"
         value={newBudget}
-        onChange={handleBudgetChange}
+        onChange={
+          handleBudgetChange}
       ></input>
       </div>
     </div>
