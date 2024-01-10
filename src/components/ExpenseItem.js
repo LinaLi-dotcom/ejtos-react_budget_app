@@ -15,6 +15,13 @@ const ExpenseItem = (props) => {
         });
     };
 
+    const handleChangeCurrency = (newCurrency) => {
+        dispatch({
+            type: 'CHANGE_CURRENCY', 
+            payload: newCurrency,
+        });
+    };
+
     const increaseAllocation = (name) => {
         const expense = {
             name: name,

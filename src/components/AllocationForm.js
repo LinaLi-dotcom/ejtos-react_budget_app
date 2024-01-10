@@ -92,7 +92,7 @@ const AllocationForm = (props) => {
 
           <div>
             <label htmlFor="cost" style={{ marginLeft: "2rem" }}>
-              {currency}
+              $
             </label>
           </div>
 

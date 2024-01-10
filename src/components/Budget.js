@@ -2,13 +2,21 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 
 const Budget = () => {
-  const { budget, expenses, currency } = useContext(AppContext);
+  const { budget, expenses, currency, dispatch } = useContext(AppContext);
   const [newBudget, setNewBudget] = useState(budget);
-  // const [newCurrency, setNewCurrency] = useState(currency);
+  const [newCurrency, setNewCurrency] = useState(currency);
 
   const totalExpenses = expenses.reduce((total, item) => {
     return (total += item.cost);
   }, 0);
+
+
+  const handleChangeCurrency = (newCurrency) => {
+    dispatch({
+        type: 'CHANGE_CURRENCY', 
+        payload: newCurrency,
+    });
+  };
 
   const handleBudgetChange = (event) => {
     var newValue = parseInt(event.target.value);
@@ -32,7 +40,9 @@ const Budget = () => {
       <label 
       htmlFor="budget"
       style={{ marginLeft: '1rem', size:10 }}
-      >{currency}</label>
+      value={newCurrency}
+      onChange={handleChangeCurrency}
+      >{newCurrency}</label>
       </div>
       <input
         id="budget"

@@ -3,7 +3,12 @@ import { AppContext } from "../context/AppContext";
 
 const Currency = () => {
   const { currency } = useContext(AppContext);
-  const [newCurrency, setNewCurrency] = useState(currency);
+  const [selectedCurrency, setSelectedCurrency] = useState(currency);
+
+  const handleCurrencyChange=(event)=>{
+    const newCurrency = event.target.value;
+    setSelectedCurrency(newCurrency);
+  }
 
 return (<div
     style={{
@@ -13,11 +18,12 @@ return (<div
     }}
   >
     <div>
-    <label htmlFor="inputCurrencySElect01">Currency ({newCurrency})</label>
+    <label htmlFor="inputCurrencySElect01">Currency ({selectedCurrency})</label>
     <select
       className="custom-select"
       id="inputCurrencySelect01"
-      onChange={(event) => setNewCurrency(event.target.value)}
+      value={selectedCurrency}
+      onChange={handleCurrencyChange}
     >
       <option defaultValue>Choose Currency...</option>
       <option value="Dollar $ " name="dollar">
